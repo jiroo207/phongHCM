@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng Hồ Chí Minh - Quản lý vật tư CTĐ, CTCT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ================= MÀN HÌNH CHỜ ================= -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-overlay"></div>
+
+        <!-- 2 vòng vàng bên ngoài + trống đồng Đông Sơn ở vòng trong -->
+        <div class="welcome-rings-bg" aria-hidden="true">
+            <div class="welcome-outer-ring ring-outer-1"></div>
+            <div class="welcome-outer-ring ring-outer-2"></div>
+
+            <div class="dongson-drum">
+                <img src="d:\dự án game về 3 tiếng nổ\trongdong.png" alt="Trống đồng Đông Sơn">
+            </div>
+        </div>
+
+        <div class="welcome-content">
+            <div class="welcome-logo">
+    <img src="d:\dự án game về 3 tiếng nổ\bacc.png" alt="Logo">
+</div>
+            <div class="welcome-line"></div>
+            <h1>PHÒNG HỒ CHÍ MINH</h1>
+            <h2>HỆ THỐNG QUẢN LÝ VẬT TƯ<br>CTĐ, CTCT</h2>
+            <p class="welcome-unit">TIỂU ĐOÀN 16 – SƯ ĐOÀN 5</p>
+            <div class="welcome-divider"></div>
+            <p class="welcome-quote">“Không có gì quý hơn độc lập, tự do"<br>
+            <button class="enter-btn" onclick="enterSystem()">
+                <span>▶</span> VÀO HỆ THỐNG
+            </button>   
+            <div class="welcome-info">
+                <span id="welcomeTime">00:00:00</span>
+                <span>•</span>
+                <span id="welcomeDate">01/01/2026</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="brand">
+           <div class="brand">
+    <div class="brand-mark">
+        <img src="d:\dự án game về 3 tiếng nổ\bacc.png" alt="Ảnh Bác Hồ">
+    </div>
+    <div>
+                <div class="brand-title">PHÒNG HỒ CHÍ MINH</div>
+                <div class="brand-sub">QUẢN LÝ VẬT TƯ CTĐ, CTCT</div>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="clock">
+                <strong id="time">14:35:20</strong>
+                <small id="date">Thứ Bảy, 24/05/2025</small>
+            </div>
+            <div class="user">
+                <div class="avatar">●</div>
+                <div>
+                    <b>Quản trị viên</b>
+                    <small>Phòng Hồ Chí Minh</small>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <!-- ================= SIDEBAR ================= -->
+        <aside class="sidebar">
+            <button class="nav-item" onclick="page('home',this)">
+                <span class="nav-icon">⌂</span>TRANG CHỦ
+            </button>
+            <button class="nav-item active" onclick="page('intro',this)">
+                <span class="nav-icon">▣</span>GIỚI THIỆU
+            </button>
+            <button class="nav-item" onclick="page('inventory',this)">
+                <span class="nav-icon">▰</span>QUẢN LÝ VẬT TƯ
+                <span style="margin-left:auto">⌄</span>
+            </button>
+            <button class="nav-item" onclick="page('books',this)">
+                <span class="nav-icon">📚</span>QUẢN LÝ SÁCH
+            </button>
+            <button class="nav-item" onclick="page('inout',this)">
+                <span class="nav-icon">↔</span>NHẬP - XUẤT
+                <span style="margin-left:auto">⌄</span>
+            </button>
+            <button class="nav-item" onclick="page('history',this)">
+                <span class="nav-icon">◷</span>LỊCH SỬ
+            </button>
+            <button class="nav-item" onclick="page('report',this)">
+                <span class="nav-icon">▥</span>THỐNG KÊ - BÁO CÁO
+                <span style="margin-left:auto">⌄</span>
+            </button>
+            <button class="nav-item" onclick="page('alert',this)">
+                <span class="nav-icon">♟</span>CẢNH BÁO
+            </button>
+            <button class="nav-item" onclick="page('backup',this)">
+                <span class="nav-icon">☁</span>SAO LƯU DỮ LIỆU
+            </button>
+            <button class="nav-item" onclick="page('guide',this)">
+                <span class="nav-icon">?</span>HƯỚNG DẪN
+            </button>
+
+            <div class="quote">
+                “Không có việc gì khó,<br>chỉ sợ lòng không bền.<br>Đào núi và lấp biển,<br>quyết chí ắt làm nên.”
+                <br><br>
+                *CHỦ TỊCH HỒ CHÍ MINH*
+                <div class="portrait"></div>
+            </div>
+        </aside>
+
+        <!-- ================= MAIN CONTENT ================= -->
+        <main class="content">
+
+            <!-- GIỚI THIỆU -->
+            <section id="intro" class="page active">
+                <div class="grid">
+                    <div class="card pad">
+                        <h1 class="heading">GIỚI THIỆU PHÒNG HỒ CHÍ MINH</h1>
+                        <p class="lead">
+                            Phòng Hồ Chí Minh là đơn vị trực thuộc công tác Đảng, công tác chính trị,
+                            có chức năng tham mưu, đề xuất và tổ chức thực hiện các nội dung về giáo dục
+                            chính trị, tư tưởng, tuyên truyền, văn hóa, văn nghệ, thể dục thể thao,
+                            hoạt động Hồ Chí Minh và các mặt công tác khác theo quy định.
+                        </p>
+                        <div class="section-title">▧ HÌNH ẢNH HOẠT ĐỘNG</div>
+                        <div class="gallery" id="gallery"></div>
+                        <div class="function">
+                            <h3>CHỨC NĂNG, NHIỆM VỤ</h3>
+                            <ul>
+                                <li>Tham mưu, đề xuất với cấp ủy, chỉ huy về công tác Đảng, công tác chính trị.</li>
+                                <li>Tổ chức giáo dục chính trị, tư tưởng, tuyên truyền, phổ biến giáo dục pháp luật.</li>
+                                <li>Quản lý, khai thác, sử dụng vật tư CTĐ, CTCT đúng quy định.</li>
+                                <li>Tổ chức các hoạt động văn hóa, văn nghệ, thể dục thể thao.</li>
+                                <li>Thực hiện các nhiệm vụ khác theo phân công của cấp trên.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card detail">
+                        <div class="detail-head">
+                            <span id="detailTitle">1. KHUÔN VIÊN PHÒNG HỒ CHÍ MINH</span>
+                        </div>
+                        <div class="detail-scroll">
+                            <div class="main-photo" id="mainPhotoBox">
+                                <img id="detailImg" class="zoomable" title="Bấm để phóng to ảnh">
+                            </div>
+                            <div class="dots" id="dots"></div>
+                            <h3>▧ NỘI DUNG</h3>
+                            <p id="detailText"></p>
+                            <h3>☑ CHỨC NĂNG, NHIỆM VỤ</h3>
+                            <ul id="detailList"></ul>
+                        </div>
+                        <div class="detail-footer">
+                            <button class="delete-btn" id="deleteCurrentBtn" onclick="deletePhoto(selected)">🗑 XÓA ẢNH NÀY</button>
+                            <button class="close2" onclick="replacePhoto(selected)">📷 ĐỔI ẢNH</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRANG CHỦ -->
+            <section id="home" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">TRANG CHỦ</h1>
+                    <p class="lead">Hệ thống giới thiệu và quản lý vật tư CTĐ, CTCT Phòng Hồ Chí Minh.</p>
+                    <div class="stat-grid">
+                        <div class="stat"><b id="s1">0</b><span>Ảnh giới thiệu</span></div>
+                        <div class="stat"><b id="s2">0</b><span>Vật tư</span></div>
+                        <div class="stat"><b id="s3">0</b><span>Tổng số lượng</span></div>
+                        <div class="stat"><b id="s4">0</b><span>Cảnh báo</span></div>
+                        <div class="stat"><b id="s5">0</b><span>Đầu sách</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VẬT TƯ -->
+            <section id="inventory" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">QUẢN LÝ VẬT TƯ</h1>
+                    <p>Quản lý danh mục, số lượng, tình trạng và vị trí vật tư CTĐ, CTCT.</p>
+                    <button class="close2" onclick="addItem()">+ THÊM VẬT TƯ</button>
+                    <div style="overflow:auto;margin-top:15px">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên vật tư</th>
+                                    <th>ĐVT</th>
+                                    <th>Số lượng</th>
+                                    <th>Tình trạng</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUẢN LÝ SÁCH -->
+            <section id="books" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">QUẢN LÝ SÁCH</h1>
+                    <p class="lead">Quản lý sách, tài liệu, giáo trình và các ấn phẩm phục vụ học tập, nghiên cứu, sinh hoạt chính trị tại Phòng Hồ Chí Minh.</p>
+                    <div class="book-toolbar">
+                        <input id="bookSearch" class="book-search" type="search" placeholder="🔎 Tìm theo tên sách, tác giả, thể loại..." oninput="renderBooks()">
+                        <button class="close2" onclick="openBookForm()">+ THÊM SÁCH</button>
+                    </div>
+                    <div id="bookGrid" class="book-grid"></div>
+                </div>
+            </section>
+
+            <!-- NHẬP - XUẤT -->
+            <section id="inout" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">NHẬP - XUẤT</h1>
+                    <p>Chức năng nhập, xuất và cập nhật tồn kho có thể mở rộng từ trang này.</p>
+                </div>
+            </section>
+
+            
+
+            <!-- THỐNG KÊ - BÁO CÁO -->
+            <section id="report" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">THỐNG KÊ - BÁO CÁO</h1>
+                    <p>Tổng hợp số lượng vật tư và sách tại Phòng Hồ Chí Minh.</p>
+                </div>
+            </section>
+
+            <!-- CẢNH BÁO -->
+            <section id="alert" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">CẢNH BÁO</h1>
+                    <p>Cảnh báo vật tư tồn thấp, hỏng hoặc cần sửa chữa.</p>
+                </div>
+            </section>
+
+            <!-- SAO LƯU DỮ LIỆU -->
+            <section id="backup" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">SAO LƯU DỮ LIỆU</h1>
+                    <p>Dữ liệu ảnh, sách và vật tư được lưu trên trình duyệt bằng LocalStorage.</p>
+                </div>
+            </section>
+
+            <!-- HƯỚNG DẪN -->
+            <section id="guide" class="page simple">
+                <div class="card pad">
+                    <h1 class="heading">HƯỚNG DẪN</h1>
+                    <ol>
+                        <li>Bấm <b>GIỚI THIỆU</b> để xem hình ảnh.</li>
+                        <li>Bấm vào từng ảnh hoặc nút <b>i</b> để xem ảnh lớn và nội dung.</li>
+                        <li>Bấm <b>QUẢN LÝ VẬT TƯ</b> để quản lý vật tư.</li>
+                        <li>Bấm <b>QUẢN LÝ SÁCH</b> để thêm và quản lý sách.</li>
+                        <li>Khi thêm sách có thể chọn <b>ảnh bìa</b> từ máy tính.</li>
+                        <li>Có thể nhập <b>nội dung chi tiết</b> của từng cuốn sách.</li>
+                        <li>Dữ liệu được lưu trên trình duyệt bằng LocalStorage.</li>
+                    </ol>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="bottom">
+        © 2025 Phòng Hồ Chí Minh - Đơn vị vững mạnh toàn diện “Mẫu mực, tiêu biểu”
+    </div>
+
+    <!-- ================= MODAL ẢNH ================= -->
+    <div class="image-modal" id="imageModal" onclick="if(event.target===this)closeImageModal()">
+        <div class="hint">Bấm vào ảnh để phóng to / thu nhỏ • ESC để đóng</div>
+        <button class="x" onclick="closeImageModal()">×</button>
+        <img id="zoomImg" alt="">
+        <div class="zoom-tools">
+            <button onclick="zoomOut(event)">−</button>
+            <button onclick="resetZoom(event)">100%</button>
+            <button onclick="zoomIn(event)">+</button>
+        </div>
+    </div>
+
+    <!-- ================= MODAL THÊM / SỬA SÁCH ================= -->
+    <div class="modal" id="bookFormModal">
+        <div class="modal-box">
+            <div class="modal-head">
+                <span id="bookFormTitle">THÊM SÁCH</span>
+                <button class="modal-close" onclick="closeBookForm()">×</button>
+            </div>
+            <form class="form" id="bookForm" onsubmit="saveBook(event)">
+                <input type="hidden" id="bookId">
+                <div class="form-group">
+                    <label>TÊN SÁCH *</label>
+                    <input id="bookName" type="text" required placeholder="Ví dụ: Hồ Chí Minh toàn tập">
+                </div>
+                <div class="form-group">
+                    <label>TÁC GIẢ</label>
+                    <input id="bookAuthor" type="text" placeholder="Nhập tên tác giả">
+                </div>
+                <div class="form-group">
+                    <label>THỂ LOẠI</label>
+                    <select id="bookCategory">
+                        <option>Chính trị</option>
+                        <option>Lịch sử</option>
+                        <option>Quân sự</option>
+                        <option>Văn học</option>
+                        <option>Pháp luật</option>
+                        <option>Giáo dục</option>
+                        <option>Tham khảo</option>
+                        <option>Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>SỐ LƯỢNG</label>
+                    <input id="bookQuantity" type="number" min="0" value="1">
+                </div>
+                <div class="form-group">
+                    <label>ẢNH BÌA SÁCH</label>
+                    <input id="bookImage" type="file" accept="image/*" onchange="previewBookImage(event)">
+                    <div class="preview-cover" id="bookPreview">
+                        <div>📚<br>Chưa chọn ảnh</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>NỘI DUNG / GIỚI THIỆU SÁCH</label>
+                    <textarea id="bookContent" placeholder="Nhập nội dung, tóm tắt hoặc giới thiệu chi tiết về cuốn sách..."></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeBookForm()">HỦY</button>
+                    <button type="submit" class="btn-primary">💾 LƯU SÁCH</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= MODAL CHI TIẾT SÁCH ================= -->
+    <div class="modal" id="bookDetailModal">
+        <div class="modal-box book-detail">
+            <div class="modal-head">
+                <span>CHI TIẾT SÁCH</span>
+                <button class="modal-close" onclick="closeBookDetail()">×</button>
+            </div>
+            <div class="book-detail-content">
+                <div class="book-detail-cover" id="detailBookCover"></div>
+                <div class="book-detail-text">
+                    <h2 id="detailBookName"></h2>
+                    <div class="meta" id="detailBookMeta"></div>
+                    <h3 style="color:#075a30">📖 NỘI DUNG</h3>
+                    <div class="book-content" id="detailBookContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
